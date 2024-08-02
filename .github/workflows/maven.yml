@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull abilov042/github-action:latest
-            sudo docker stop github-action || true
-            sudo docker rm github-action || true
-            sudo docker run -d --name github-action -p 8085:8085 abilov042/github-action:latest
+            docker pull abilov042/github-action:latest
+            docker stop github-action || true
+            docker rm github-action || true
+            docker run -d --name github-action -p 8085:8085 abilov042/github-action:latest
