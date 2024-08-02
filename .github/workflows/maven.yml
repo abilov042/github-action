@@ -2,23 +2,24 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
       - name: Build with Maven
         run: mvn clean package
 
@@ -41,6 +42,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             sudo docker pull abilov042/github-action:latest
-            sudo docker stop githob-action || true
+            sudo docker stop github-action || true
             sudo docker rm github-action || true
             sudo docker run -d --name github-action -p 8085:8085 abilov042/github-action:latest
